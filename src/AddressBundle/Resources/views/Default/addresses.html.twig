@@ -1,0 +1,48 @@
+{% extends '@Address/Default/address_base.html.twig' %}
+
+{% block content %}
+<body>
+  <table class="table table-bordered table-striped">
+    <thead>
+    <tr>
+      <th>Corp id</th>
+      <th>Org id</th>
+      <th>Street</th>
+      <th>Possibly same streets</th>
+      <th>Number</th>
+      <th>City</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for address in addresses %}
+      <tr>
+        <td>
+          {{ address.corpId }}
+        </td>
+        <td>
+          {{ address.orgId }}
+        </td>
+        <td>
+          {{ address.street }}
+        </td>
+        <td>
+          {% for possibleAddress in address.similarAddresses %}
+            <p>
+              <span>Street name: {{ possibleAddress.street }}</span>
+              <span>Org id: {{ possibleAddress.orgId }}</span>
+              <span>Match(%): {{ (possibleAddress.percentage * 100)|number_format(2)}}</span>
+            </p>
+          {% endfor %}
+        </td>
+        <td>
+          {{ address.number }}
+        </td>
+        <td>
+          {{ address.city }}
+        </td>
+      </tr>
+    {% endfor %}
+    </tbody>
+  </table>
+</body>
+{% endblock content %}

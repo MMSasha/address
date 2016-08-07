@@ -1,0 +1,8 @@
+address:
+    resource: "@AddressBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+test.address:
+  path: /test-address
+  defaults: { _controller: AddressBundle:Address:index }
